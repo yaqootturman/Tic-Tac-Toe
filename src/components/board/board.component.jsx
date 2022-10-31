@@ -5,7 +5,14 @@ import evaluate from "../../utils/utils";
 const Board = (props) => {
   const [cells, setCells] = useState(Array(9).fill(""));
   const [winner, setWinner] = useState(null);
+  const [reset, setReset] = useState(true);
   const { turn, setTurn, setWins } = props;
+
+  const onReset = () => {
+    setWinner(null);
+    setReset(true);
+    setCells(Array(9).fill(""));
+  };
   const cellClick = (index) => {
     if (cells[index] !== "") return;
     const newCells = [...cells];
@@ -20,7 +27,7 @@ const Board = (props) => {
         setWins((wins) => {
           return { ...wins, xWins: wins.xWins + 1 };
         });
-      else if ((result = "O"))
+      else if (result === "O")
         setWins((wins) => {
           return { ...wins, oWins: wins.oWins + 1 };
         });
@@ -39,9 +46,9 @@ const Board = (props) => {
           </div>
         ))}
         {winner && (
-          <div className="result">
+          <div className={!reset ? "hidden-result" : "result"}>
             {winner === "draw" ? "Draw :-(" : "winner is: " + winner}
-            <br /> <button>Restart</button>
+            <br /> <button onClick={onReset}>Restart</button>
           </div>
         )}
       </div>

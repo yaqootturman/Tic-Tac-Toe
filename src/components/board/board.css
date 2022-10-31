@@ -62,3 +62,6 @@
 .result button:hover {
   box-shadow: 0px 0px 6px #4b4b4b;
 }
+.hidden-result{
+  display: none;
+}
