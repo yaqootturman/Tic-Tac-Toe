@@ -1,7 +1,15 @@
 import "./header.css";
+import { useState, useEffect } from "react";
 
 const Header = (props) => {
-  const { turn, wins } = props;
+  const { turn, wins, setWins } = props;
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("wins"));
+    if (items) {
+      setWins(items);
+    }
+  }, []);
   return (
     <div className="header">
       <span> X: {wins.xWins}</span>

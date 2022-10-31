@@ -8,6 +8,7 @@ const Board = (props) => {
   const [reset, setReset] = useState(true);
   const { turn, setTurn, setWins } = props;
 
+ 
   const onReset = () => {
     setWinner(null);
     setReset(true);
